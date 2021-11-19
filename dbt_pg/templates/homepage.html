@@ -15,12 +15,13 @@
     <p>To view installed sensors: <a href="sensors">View sensors</a></p>
     <p>Login to install sensors: <a href="admin">Admin login</a></p>
     <script src="{% static 'dbt_pg/main.js' %}"></script>
-
+    <input onchange="filterData()" type="date" id="startdate">
+    <input onchange="filterData()" type="date" id="enddate">
 
 <!---------------------------------------------->
 
 
-  <canvas id="myChart" width="1000px" height="400px"></canvas>
+  <canvas id="myChart" width="100px" height="40px"></canvas>
 
 
 
@@ -52,6 +53,12 @@
               }]
           },
       });
+
+    function filterData(){
+      const time2 = [...time];
+      console.log(time2[0]);
+
+    }
 
     </script>
 
