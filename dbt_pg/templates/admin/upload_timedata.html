@@ -1,0 +1,16 @@
+{% extends 'admin/base.html' %}
+
+{% block content %}
+    <div>
+        <h1>Import measured data from sensors via CSV file</h1>
+        <p>The CSV file should be delimited with ";" and have the following form:</p>
+        <p>Sensor ID ; Timestamp ; Masl. ; Placement ; Sensor type ; Is filtered</p>
+        <p>Where all are obligatory.</p>
+        <p>Note that the first row is skipped due to column names.</p>
+        <form action="." method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button type="submit">Upload File</button>
+        </form>
+    </div>
+{% endblock %}

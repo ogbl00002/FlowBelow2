@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DBT - Flowbelow AB</title>
+    <h1>DBT - Flowbelow AB</h1>
+    <p>This is a demo app to show how an application of our work to display current water levels at installed locations.</p>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js"></script>
+</script>
+</head>
+<body>
+    <p>To view installed sensors: <a href="sensors">View sensors</a></p>
+    <p>Login to install sensors: <a href="admin">Admin login</a></p>
+    <script src="{% static 'dbt_pg/main.js' %}"></script>
+
+
+<!---------------------------------------------->
+
+
+  <canvas id="myChart" width="1000px" height="400px"></canvas>
+
+
+
+    <script>
+    let data = [];
+    let time = [];
+      {% for item in timeData %}
+        data.push(Number('{{item.masl}}'));
+        time.push('{{item.time}}');
+      {% endfor %}
+
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: time,
+              datasets: [{
+                  label: 'Sensor data',
+                  data: data,
+                  backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)'
+
+                  ],
+                  borderColor: [
+                      'rgba(255, 99, 132, 1)'
+
+                  ],
+                  borderWidth: 1
+              }]
+          },
+      });
+
+    </script>
+
+
+<!-------------------------------------------------->
+</body>
+</html>
